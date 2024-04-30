@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Código de Ativação</title>
+</head>
+<body>
+<!-- Campo de texto para o nome de usuário -->
+    <div id="usernameContainer">
+        <p>Nome de Usuário:</p><input type="text" id="username" readonly>
+        <button onclick="copyUsername()">Copiar</button>
+        
+    </div>
+    <p>Código de Ativação:</p><input type="text" id="activationCode" value="{{ code }}" readonly>
+    <button onclick="copyActivationCode()">Copiar</button>
+
+
+    
+    <script>
+        function copyActivationCode() {
+            /* Seleciona o campo de texto do código de ativação */
+            var activationCodeField = document.getElementById("activationCode");
+            
+            /* Seleciona o texto no campo de texto */
+            activationCodeField.select();
+            activationCodeField.setSelectionRange(0, 99999); /* Para dispositivos móveis */
+
+            /* Copia o texto selecionado */
+            document.execCommand("copy");
+
+            /* Exibe o container do nome de usuário */
+            document.getElementById("usernameContainer").style.display = "block";
+        }
+
+        function copyUsername() {
+            /* Seleciona o campo de texto do nome de usuário */
+            var usernameField = document.getElementById("username");
+            
+            /* Seleciona o texto no campo de texto */
+            usernameField.select();
+            usernameField.setSelectionRange(0, 99999); /* Para dispositivos móveis */
+
+            /* Copia o texto selecionado */
+            document.execCommand("copy");
+        }
+    </script>
+
+    <!-- Verifica se a variável 'username' está definida no template -->
+    {% if username %}
+        <script>
+            /* Se 'username' estiver definido, atualiza o valor do campo de texto do nome de usuário */
+            document.getElementById("username").value = "{{ username }}";
+        </script>
+    {% endif %}
+</body>
+</html>

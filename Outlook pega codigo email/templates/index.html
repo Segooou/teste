@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Obter Código da Betano</title>
+</head>
+<body>
+    <h2>Gerar codigo Outlook/Hotmail</h2>
+    <form action="/get_code" method="post">
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required><br><br>
+        <label for="password">Senha:</label>
+        <input type="password" id="password" name="password" required><br><br>
+        <button type="submit">Obter Código</button>
+    </form>
+    
+    <!-- Adicionando o campo de texto para exibir o código recebido -->
+    <div id="receivedCodeContainer" style="display: none;">
+        <h2>Código Recebido:</h2>
+        <input type="text" id="receivedCode" readonly>
+    </div>
+
+    <script>
+        // Função para exibir o código recebido no campo de texto
+        function displayReceivedCode(code) {
+            document.getElementById("receivedCode").value = code;
+            document.getElementById("receivedCodeContainer").style.display = "block";
+        }
+    </script>
+
+    <!-- Verifica se a variável 'code' está definida no template -->
+    {% if code %}
+        <script>
+            // Se 'code' estiver definido, chama a função para exibir o código recebido
+            displayReceivedCode("{{ code }}");
+        </script>
+    {% endif %}
+</body>
+</html>
